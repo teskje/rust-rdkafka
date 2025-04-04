@@ -155,6 +155,9 @@ fn build_librdkafka() {
         configure_flags.push("--disable-lz4-ext".into());
     }
 
+    // Required for hwasan to work. Otherwise it segfaults in rdkafka threads.
+    configure_flags.push("--disable-c11threads".into());
+
     env::set_var("CFLAGS", cflags.join(" "));
     env::set_var("LDFLAGS", ldflags.join(" "));
 
@@ -267,6 +270,9 @@ fn build_librdkafka() {
     } else {
         config.define("ENABLE_LZ4_EXT", "0");
     }
+
+    // Required for hwasan to work. Otherwise it segfaults in rdkafka threads.
+    config.define("WITH_C11THREADS", "0");
 
     if let Ok(system_name) = env::var("CMAKE_SYSTEM_NAME") {
         config.define("CMAKE_SYSTEM_NAME", system_name);
