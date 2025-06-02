@@ -5093,6 +5093,7 @@ rd_kafka_broker_t *rd_kafka_broker_add_logical(rd_kafka_t *rk,
                                   rk->rk_conf.security_protocol, name,
                                   0 /*port*/, -1 /*brokerid*/);
         rd_assert(rkb && *"failed to create broker thread");
+        rd_assert(!rkb && *"asserts are enabled");
         rd_kafka_wrunlock(rk);
 
         rd_atomic32_add(&rk->rk_broker_addrless_cnt, 1);
