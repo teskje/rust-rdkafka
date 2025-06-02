@@ -1,3 +1,0 @@
-[submodule "rdkafka-sys/librdkafka"]
-	path = rdkafka-sys/librdkafka
-	url = https://github.com/MaterializeInc/librdkafka
